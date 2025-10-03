@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Section 3 Task
 class TodoTask extends StatefulWidget {
   const TodoTask({super.key});
 
@@ -8,7 +9,7 @@ class TodoTask extends StatefulWidget {
 }
 
 class _TodoTask extends State<TodoTask> {
-  final GlobalKey _formKey = GlobalKey();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   List<Map<String, dynamic>> todoDatas = [];
 
   TextEditingController taskEditor = TextEditingController();
@@ -30,23 +31,30 @@ class _TodoTask extends State<TodoTask> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        validator: (value) {
+                          if (value!.trim() == "") {
+                            return 'Enter Task';
+                          }
+                          return null;
+                        },
                         controller: taskEditor,
                         decoration: InputDecoration(),
                       ),
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        if (taskEditor.text.trim().isEmpty) return;
-
-                        setState(() {
-                          Map<String, dynamic> data = {
-                            'id': DateTime.now().millisecond,
-                            'todo': taskEditor.text,
-                            'completion': false,
-                          };
-                          todoDatas.add(data);
-                          taskEditor.clear();
-                        });
+                        if (_formKey.currentState!.validate()) {
+                          if (taskEditor.text.trim().isEmpty) return;
+                          setState(() {
+                            Map<String, dynamic> data = {
+                              'id': DateTime.now().millisecond,
+                              'todo': taskEditor.text,
+                              'completion': false,
+                            };
+                            todoDatas.add(data);
+                            taskEditor.clear();
+                          });
+                        }
                       },
                       child: Text("Add"),
                     ),

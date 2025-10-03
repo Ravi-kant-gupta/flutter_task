@@ -19,3 +19,32 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+/// Section 4 Task
+
+// void main() {
+//   List<Map<String,dynamic>> users = [
+//     {
+//       "id": 1,
+//      "name": "Rahul"
+//      },
+//     {
+//       "id": 2,
+//      "name": "Ankit"
+//      },
+//     {
+//       "id": 3,
+//      "name": "Neha"
+//      },
+//     {
+//       "id": 4,
+//      "name": "Aditi"
+//      }
+//   ];
+  
+//   List<String> names = users.map((item) => item['name'] as String).toList();
+  
+//   names.sort();
+  
+//   print(names);
+// }
